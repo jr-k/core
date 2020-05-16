@@ -189,7 +189,7 @@ class Remote:
         except (AttributeError, TypeError):
             key = getattr(key, "value", key)
 
-        await self._handle_errors(self._control.send_key, key)
+        await self._handle_errors(self._control.send_key if key.startswith('NRC_') else self._control.launch_app, key)
 
     async def async_turn_on(self):
         """Turn on the TV."""
